@@ -8,18 +8,20 @@ use serde::{Deserialize, Serialize};
 #[table_name = "tasks"]
 pub struct Task {
     pub name: String,
-    pub time: String,
-    pub severity: bool,
-    pub priority: bool,
+    pub time: chrono::NaiveDateTime,
+    pub severity: i32,
+    pub priority: i32,
+    pub completed: i32,
 }
 
 #[derive(Serialize, Deserialize, Queryable)]
 pub struct Tasks {
     pub id: i32,
     pub name: String,
-    pub time: String,
-    pub severity: bool,
-    pub priority: bool,
+    pub time: chrono::NaiveDateTime,
+    pub severity: i32,
+    pub priority: i32,
+    pub completed: i32,
 }
 
 impl Tasks {
@@ -63,6 +65,7 @@ impl Task {
             time: task.time,
             severity: task.severity,
             priority: task.priority,
+            completed: task.completed,
         }
     }
 }
